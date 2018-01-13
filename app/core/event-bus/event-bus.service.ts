@@ -19,19 +19,19 @@ export class EventBusService {
 		this.paginationControllsAvailability = new EventEmitter();
 	}
 
-	public emitRequestError(data) {
+	public emitRequestError(data): void {
 		this.requestError.emit(data);
 	}
 	
-	public emitFetchedPitchData(data) {
+	public emitFetchedPitchData(data): void {
 		this.fetchedPitchData.emit(data);
 	}
 	
-	public emitChangePitchesPagination(data) {
+	public emitChangePitchesPagination(data): void {
 		this.changePitchesPagination.emit(data);
 	}
 	
-	public emitPaginationControllsAvailability(data) {
+	public emitPaginationControllsAvailability(data): void {
 		this.paginationControllsAvailability.emit(data);
 	}
 }

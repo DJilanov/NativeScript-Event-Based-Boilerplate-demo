@@ -1,8 +1,8 @@
-<ActionBar title="Details" class="action-bar"></ActionBar>
+<ActionBar title="Pitch details" class="action-bar"></ActionBar>
 <FlexboxLayout flexDirection="column" class="page">
     <FlexboxLayout class="m-15">
-        <Label class="h2" [text]="item.id + '. '"></Label>
-        <Label class="h2" [text]="item.name"></Label>
+        <Label class="h2" [text]="pitch.id + '. '"></Label>
+        <Label class="h2" [text]="pitch.attributes.starts | date:'hh:mm d/m/y'"></Label>
     </FlexboxLayout>
-    <Label class="h4" [text]="item.role"></Label>
+    <Label class="h4" [text]="pitch.attributes.availabilities"></Label>
 </FlexboxLayout>

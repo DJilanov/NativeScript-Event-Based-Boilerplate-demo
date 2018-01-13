@@ -1,13 +1,13 @@
 <StackLayout class="form">
     <StackLayout class="input-field">
-        <Label class="label" text="Pitch ID" row="0" col="0" textWrap="true"></Label>
-        <TextField class="input input-border" id="pitchId" hint="Enter pitch ID" [text]='pitchId' row="0" col="1" keyboardType="number" ></TextField>
+        <Label class="label" text="Pitch ID" textWrap="true"></Label>
+        <TextField class="input input-border" id="pitchId" hint="Enter pitch ID" [text]='pitchId' keyboardType="number" ></TextField>
     </StackLayout>
     <StackLayout class="input-field">
-        <Label class="label" text="Start Date" row="1" col="0" textWrap="true"></Label>
+        <Label class="label" text="Start Date" textWrap="true"></Label>
         <TextField class="input input-border" id="startDateTextField" hint="Enter start date" [text]='startDate | date:"MM/dd/yy"' (focus)="showStartDatePicker()"
-        row="29" col="1" returnKeyType="done" (returnPress)="submit()"></TextField>
-        <StackLayout [visibility]="startDatePickerVisible ? 'visible' : 'collapsed'" row="0" col="0">
+        returnKeyType="done" (returnPress)="submit()"></TextField>
+        <StackLayout [visibility]="startDatePickerVisible ? 'visible' : 'collapsed'">
             <DatePicker id="startDatePicker" #dp [visibility]="startDatePickerVisible ? 'visible' : 'collapsed'"></DatePicker>
             <Button class="btn btn-primary btn-active" text="Tap to enter the date" (tap)="enterStartDate()" [visibility]="startDateButtonVisible ? 'visible' : 'collapsed'"></Button>
         </StackLayout>
@@ -15,11 +15,11 @@
     <StackLayout class="input-field">
         <Label class="label" text="End Date" row="2" col="0" textWrap="true"></Label>
         <TextField class="input input-border" id="endDateTextField" hint="Enter end date" [text]='endDate | date:"MM/dd/yy"' (focus)="showEndDatePicker()"
-        row="29" col="1" returnKeyType="done" (returnPress)="submit()"></TextField>
-        <StackLayout [visibility]="endDatePickerVisible ? 'visible' : 'collapsed'" row="0" col="0">
+        returnKeyType="done" (returnPress)="submit()"></TextField>
+        <StackLayout [visibility]="endDatePickerVisible ? 'visible' : 'collapsed'">
             <DatePicker id="endDatePicker" #dp [visibility]="endDatePickerVisible ? 'visible' : 'collapsed'"></DatePicker>
             <Button class="btn btn-primary btn-active" text="Tap to enter the date" (tap)="enterEndDate()" [visibility]="endDateButtonVisible ? 'visible' : 'collapsed'"></Button>
         </StackLayout>
     </StackLayout>
-    <Button row="1" colSpan="3" (tap)="onSeachTap()" text="Search"></Button>
+    <Button (tap)="onSeachTap()" text="Search"></Button>
 </StackLayout>

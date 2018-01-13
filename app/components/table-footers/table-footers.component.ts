@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
 
 import { EventBusService } from "../../core/event-bus/event-bus.service";
 
@@ -15,8 +14,7 @@ export class TableFootersComponent {
     enabledPreviousPage = false;
 
     constructor(
-        private eventBusService: EventBusService,
-        private routerExtensions: RouterExtensions
+        private eventBusService: EventBusService
     ) {
         this.eventBusService.paginationControllsAvailability.subscribe((data) => this.updatePaginationControlls(data))
     }

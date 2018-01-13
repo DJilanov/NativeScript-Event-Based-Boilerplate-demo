@@ -36,7 +36,7 @@ export class PitchesComponent {
         this.updatePitches();
     }
 
-    updatePitches() {
+    updatePitches(): void {
         this.pitches.length = 0
         let lastElementIndex = Math.min(this.fetchedPitches.length, (this.currentPage + 1) * pitchesPerPage);
         for(let pitchCounter = 0 + this.currentPage * pitchesPerPage; pitchCounter < lastElementIndex; pitchCounter++) {
@@ -48,7 +48,7 @@ export class PitchesComponent {
         })
     }
 
-    changePitchesPagination(changeToNextPage) {
+    changePitchesPagination(changeToNextPage): void {
         if(changeToNextPage.next) {
             this.nextPage();
         } else {
@@ -56,25 +56,25 @@ export class PitchesComponent {
         }
     }
 
-    hasNextPage() {
+    hasNextPage(): Boolean {
         return ((this.currentPage + 1) * 10) < this.fetchedPitches.length;
     }
     
-    hasPreviousPage() {
+    hasPreviousPage(): Boolean {
         return this.currentPage > 0;
     }
 
-    nextPage() {
+    nextPage(): void {
         this.currentPage++;
         this.updatePitches();
     }
 
-    previousPage() {
+    previousPage(): void {
         this.currentPage--;
         this.updatePitches();
     }
     
     onItemTap(event): void {
-        this.routerExtensions.navigate(['/pitches', this.pitches[event.index].id]);
+        this.routerExtensions.navigate(['/pitches', this.fetchedPitches[event.index].id]);
     }
 }

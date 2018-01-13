@@ -1,8 +1,4 @@
 import { Component } from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
-
-import { Pitch } from "../../services/pitch/pitch";
-import { PitchService } from "../../services/pitch/pitch.service";
 
 @Component({
     selector: "ns-table-headers",
@@ -12,10 +8,5 @@ import { PitchService } from "../../services/pitch/pitch.service";
 })
 export class TableHeadersComponent {
 
-    constructor(
-        private pitchService: PitchService,
-        private routerExtensions: RouterExtensions
-    ) {
-
-    }
+    constructor() {}
 }
