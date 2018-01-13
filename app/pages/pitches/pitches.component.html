@@ -1,21 +1,20 @@
 <ActionBar title="My App" class="action-bar"></ActionBar>
 
-<StackLayout>
-    <GridLayout columns="*" rows="auto, *" >
-        <StackLayout row="0" col="0">
-            <ns-search-form
-                [gridLayout]="gridLayout">
-            </ns-search-form>
-        </StackLayout>
-        <ListView class="list-group" id="pitches-list"
+<GridLayout rows="auto, *" columns="*">
+    <StackLayout row="0" col="0">
+        <ns-search-form
+            [gridLayout]="gridLayout">
+        </ns-search-form>
+    </StackLayout>
+    <StackLayout row="1" col="0">
+        <ListView class="list-group" id="pitches-list" 
             [items]="pitches" (itemTap)="onItemTap($event)">
-            <Label text="Pitch"></Label>
             <ng-template let-pitch="item" let-i="index" let-odd="odd" let-even="even">
-                <ns-pitch
+                <!-- <ns-pitch
                     [pitch]="pitch">
-                </ns-pitch>
+                </ns-pitch> -->
                 <Label text="Pitch"></Label>
             </ng-template>
         </ListView>
-    </GridLayout>
-</StackLayout>
+    </StackLayout>
+</GridLayout>

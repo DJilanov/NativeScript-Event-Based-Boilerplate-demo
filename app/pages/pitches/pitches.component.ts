@@ -28,13 +28,7 @@ export class PitchesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.myItems = this.itemService.getItems();
-        // this.viewModel.set("myItems", this.myItems);
-    
-        // // ListView will be updated automatically when new item is pushed.
-        // this.myItems.push({title:"Publishing"});
-    
-        // this.page.bindingContext = this.viewModel;
+
     }
 
     updatePitches(pitches: Pitch[]) {
@@ -45,30 +39,6 @@ export class PitchesComponent implements OnInit {
         console.log(pitches)
         // this.page.getViewById("pitches-list")['refresh']();
         // listView.refresh();
-    }
-    pageLoaded(args) {
-        debugger;
-        var data = [{
-            "testName": "Multiplizieren",
-            "testKlasse": 3,
-            "testFach": "Mathematik"
-              },
-              {
-            "testName": "Addieren",
-            "testKlasse": 3,
-            "testFach": "Mathematik"
-              }]
-              var items = new ObservableArray([]);
-              var pageData = new Observable();
-        this.page.bindingContext = pageData;
-        
-        items.push(data);
-        
-        pageData.set("pitches", items);
-    }
-
-    loadMore(args) {
-        debugger;
     }
 
     onItemTap(event) {
