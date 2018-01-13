@@ -1,20 +1,24 @@
-<ActionBar title="My App" class="action-bar"></ActionBar>
-
-<GridLayout rows="auto, *" columns="*">
-    <StackLayout row="0" col="0">
-        <ns-search-form
-            [gridLayout]="gridLayout">
-        </ns-search-form>
-    </StackLayout>
-    <StackLayout row="1" col="0">
-        <ListView class="list-group" id="pitches-list" 
-            [items]="pitches" (itemTap)="onItemTap($event)">
-            <ng-template let-pitch="item" let-i="index" let-odd="odd" let-even="even">
-                <!-- <ns-pitch
-                    [pitch]="pitch">
-                </ns-pitch> -->
-                <Label text="Pitch"></Label>
-            </ng-template>
-        </ListView>
+<ActionBar title="DJ Local Pitch Test App" class="action-bar"></ActionBar>
+<GridLayout rows="auto, *, 60" columns="*"> 
+    <ScrollView row="0" orientation="vertical">
+        <GridLayout rows="*,30"   >
+            <StackLayout row="0">
+                <ns-search-form row="0"></ns-search-form>
+            </StackLayout>
+            <StackLayout [visibility]="pitches.length ? 'visible' : 'collapsed'" row="1">
+                <ns-table-headers></ns-table-headers>
+            </StackLayout>
+        </GridLayout>
+    </ScrollView>
+    <ListView row="1" [items]="pitches" (itemTap)="onItemTap($event)">
+        <Label class="label" text="1Pitch ID" textWrap="true"></Label>
+        <ng-template let-pitch="item" let-i="index" let-odd="odd" let-even="even">
+            <ns-pitch
+                [selectedPitchId]="pitch">
+            </ns-pitch>
+        </ng-template>
+    </ListView>
+    <StackLayout [visibility]="pitches.length ? 'visible' : 'collapsed'" row="3">
+        <ns-table-footers></ns-table-footers>
     </StackLayout>
 </GridLayout>

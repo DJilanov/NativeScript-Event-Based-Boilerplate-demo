@@ -1,8 +1,11 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 
 import { Pitch } from "../../services/pitch/pitch";
 import { PitchService } from "../../services/pitch/pitch.service";
+import { UtilsService } from "../../shared/utils/utils.service";
+
+const GBPtoEURrate = 1.13;
 
 @Component({
     selector: "ns-pitch",
@@ -10,26 +13,41 @@ import { PitchService } from "../../services/pitch/pitch.service";
     templateUrl: "./pitch.component.html",
     styleUrls: [ './pitch.component.css' ]
 })
-export class PitchComponent implements OnInit {
+export class PitchComponent {
     
-    @Input("selectedPitchId") selectedPitchId;
+    @Input("selectedPitchId") selectedPitch: Pitch;
 
-    selectedPitch: Pitch;
-
-    // This pattern makes use of Angular’s dependency injection implementation to inject an instance of the ItemService service into this class. 
-    // Angular knows about this service because it is included in your app’s main NgModule, defined in app.module.ts.
     constructor(
         private pitchService: PitchService,
+        private utilsService: UtilsService,
         private routerExtensions: RouterExtensions
     ) {
 
     }
 
-    ngOnInit(): void {
-        this.selectedPitch = this.pitchService.getPitch(this.selectedPitchId);
+    getDuration(): string {
+        let ends = new Date(this.selectedPitch.attributes.ends);
+        let starts = new Date(this.selectedPitch.attributes.starts);
+        return this.utilsService.getTimeDifference(ends, starts);
     }
 
-    onItemTap(event) {
-        // this.routerExtensions.navigate(['/pitches', this.items[event.index].id]);
+    getGBPPrice(): string {
+        if(this.selectedPitch.attributes && this.selectedPitch.attributes.currency === 'GBP') {
+            return this.selectedPitch.attributes.price;
+        } else {
+            return (+this.selectedPitch.attributes.price * GBPtoEURrate).toFixed(2);
+        }
+    }
+    
+    getEURPrice(): string {
+        if(this.selectedPitch.attributes && this.selectedPitch.attributes.currency === 'GBP') {
+            return (+this.selectedPitch.attributes.price / GBPtoEURrate).toFixed(2);
+        } else {
+            return this.selectedPitch.attributes.price;
+        }
+    }
+
+    onItemTap(event): void {
+        this.routerExtensions.navigate(['/pitches', this.selectedPitch.id]);
     }
 }

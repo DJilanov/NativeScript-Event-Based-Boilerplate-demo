@@ -41,7 +41,7 @@ export class SearchFormComponent {
 
     }
     
-    showStartDatePicker() {
+    showStartDatePicker(): void {
         let textFieldStartDate = this.page.getViewById<TextField>("startDateTextField");
         this.startDateButtonVisible = true;
         this.startDatePickerVisible = true;
@@ -51,7 +51,7 @@ export class SearchFormComponent {
         }, 100);
     }
     
-    showEndDatePicker() {
+    showEndDatePicker(): void {
         let textFieldEndDate = this.page.getViewById<TextField>("endDateTextField");
         this.endDateButtonVisible = true;
         this.endDatePickerVisible = true;
@@ -61,7 +61,7 @@ export class SearchFormComponent {
         }, 100);
     }
     
-    enterStartDate() {
+    enterStartDate(): void {
         let datePicker = this.page.getViewById<DatePicker>("startDatePicker");
         let selectedDate = new Date(datePicker.year, datePicker.month - 1, datePicker.day);
         this.startDate = selectedDate;
@@ -69,7 +69,7 @@ export class SearchFormComponent {
         this.startDatePickerVisible = false;
     }
 
-    enterEndDate() {
+    enterEndDate(): void {
         let datePicker = this.page.getViewById<DatePicker>("endDatePicker");
         let selectedDate = new Date(datePicker.year, datePicker.month - 1, datePicker.day);
         this.endDate = selectedDate;
@@ -77,15 +77,15 @@ export class SearchFormComponent {
         this.endDatePickerVisible = false;
     }
 
-    onDatePickerLoaded(args) {
+    onDatePickerLoaded(args): void {
         let datePicker = <DatePicker>args.object;
         datePicker.minDate = dateRange.minDate;
         datePicker.maxDate = dateRange.maxDate;
     }
 
-    onSeachTap(event) {
+    onSeachTap(event): void {
         let idInput = this.page.getViewById<TextField>("pitchId");
-        debugger;
+        idInput.dismissSoftInput();
         this.backendService.fetchPitches({
             id: idInput.text,
             startDate: this.startDate.toISOString().split('T')[0],

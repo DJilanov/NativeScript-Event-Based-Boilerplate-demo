@@ -6,7 +6,7 @@ import { Pitch } from "./pitch";
 export class PitchService {
     private pitches = new Array<Pitch>();
 
-    setPitches(pitches) {
+    setPitches(pitches): void {
         this.pitches = pitches;
     }
 

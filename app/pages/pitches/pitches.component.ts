@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy  } from "@angular/core";
+import { Component, ChangeDetectionStrategy  } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { Observable, fromObject, fromObjectRecursive, PropertyChangeData, EventData, WrappedValue } from "tns-core-modules/data/observable";
 import { ObservableArray, ChangedData, ChangeType } from "tns-core-modules/data/observable-array";
@@ -14,7 +14,7 @@ import { EventBusService } from "../../core/event-bus/event-bus.service";
     templateUrl: "./pitches.component.html",
     styleUrls: [ './pitches.component.css' ]
 })
-export class PitchesComponent implements OnInit {
+export class PitchesComponent {
     pitches: ObservableArray<Pitch> = new ObservableArray<Pitch>();
     pageData: Observable = new Observable();
 
@@ -27,21 +27,12 @@ export class PitchesComponent implements OnInit {
         this.eventBusService.fetchedPitchData.subscribe((pitches) => this.updatePitches(pitches))
     }
 
-    ngOnInit(): void {
-
-    }
-
-    updatePitches(pitches: Pitch[]) {
+    updatePitches(pitches: Pitch[]): void {
         this.pitches.length = 0
         this.pitches.push(pitches);
-        debugger;
-        // this.pageData.set("pitches", this.pitches);
-        console.log(pitches)
-        // this.page.getViewById("pitches-list")['refresh']();
-        // listView.refresh();
     }
 
-    onItemTap(event) {
+    onItemTap(event): void {
         this.routerExtensions.navigate(['/pitches', this.pitches[event.index].id]);
     }
 }

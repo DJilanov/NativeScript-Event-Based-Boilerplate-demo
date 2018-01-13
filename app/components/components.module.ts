@@ -7,6 +7,8 @@ import { throwIfAlreadyLoaded } from '../core/module-import-guard';
 
 import { PitchComponent } from "./pitch/pitch.component";
 import { SearchFormComponent } from "./search-form/search-form.component";
+import { TableFootersComponent } from "./table-footers/table-footers.component";
+import { TableHeadersComponent } from "./table-headers/table-headers.component";
 
 @NgModule({
     imports: [
@@ -16,11 +18,14 @@ import { SearchFormComponent } from "./search-form/search-form.component";
     ],
     exports: [
         PitchComponent,
-        SearchFormComponent
+        SearchFormComponent,
+        TableHeadersComponent
     ],
     declarations: [
         PitchComponent,
-        SearchFormComponent
+        SearchFormComponent,
+        TableFootersComponent,
+        TableHeadersComponent
     ]
 })
 export class ComponentsModule {

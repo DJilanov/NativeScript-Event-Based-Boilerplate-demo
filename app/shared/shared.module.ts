@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 
 import { throwIfAlreadyLoaded } from '../core/module-import-guard';
 
+import { UtilsService } from './utils/utils.service';
+
 @NgModule({
     imports: [
         RouterModule,
@@ -14,6 +16,7 @@ import { throwIfAlreadyLoaded } from '../core/module-import-guard';
     declarations: [
     ],
     providers: [
+        UtilsService
     ]
 })
 export class SharedModule {
