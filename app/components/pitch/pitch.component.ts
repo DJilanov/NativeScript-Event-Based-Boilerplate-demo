@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 
 import { Pitch } from "../../services/pitch/pitch";
@@ -15,7 +15,7 @@ const GBPtoEURrate = 1.13;
 })
 export class PitchComponent {
     
-    @Input("selectedPitchId") selectedPitch: Pitch;
+    @Input("pitch") pitch: Pitch;
 
     constructor(
         private pitchService: PitchService,
@@ -24,30 +24,34 @@ export class PitchComponent {
     ) {
 
     }
+    
+    ngOnInit(): void {
+        // debugger;
+    }
 
     getDuration(): string {
-        let ends = new Date(this.selectedPitch.attributes.ends);
-        let starts = new Date(this.selectedPitch.attributes.starts);
+        let ends = new Date(this.pitch.attributes.ends);
+        let starts = new Date(this.pitch.attributes.starts);
         return this.utilsService.getTimeDifference(ends, starts);
     }
 
     getGBPPrice(): string {
-        if(this.selectedPitch.attributes && this.selectedPitch.attributes.currency === 'GBP') {
-            return this.selectedPitch.attributes.price;
+        if(this.pitch.attributes && this.pitch.attributes.currency === 'GBP') {
+            return this.pitch.attributes.price;
         } else {
-            return (+this.selectedPitch.attributes.price * GBPtoEURrate).toFixed(2);
+            return (+this.pitch.attributes.price * GBPtoEURrate).toFixed(2);
         }
     }
     
     getEURPrice(): string {
-        if(this.selectedPitch.attributes && this.selectedPitch.attributes.currency === 'GBP') {
-            return (+this.selectedPitch.attributes.price / GBPtoEURrate).toFixed(2);
+        if(this.pitch.attributes && this.pitch.attributes.currency === 'GBP') {
+            return (+this.pitch.attributes.price / GBPtoEURrate).toFixed(2);
         } else {
-            return this.selectedPitch.attributes.price;
+            return this.pitch.attributes.price;
         }
     }
 
     onItemTap(event): void {
-        this.routerExtensions.navigate(['/pitches', this.selectedPitch.id]);
+        this.routerExtensions.navigate(['/pitches', this.pitch.id]);
     }
 }

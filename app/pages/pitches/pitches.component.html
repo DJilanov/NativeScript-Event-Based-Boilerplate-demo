@@ -1,5 +1,5 @@
 <ActionBar title="DJ Local Pitch Test App" class="action-bar"></ActionBar>
-<GridLayout rows="auto, *, 60" columns="*"> 
+<GridLayout rows="auto, *, 30" columns="*"> 
     <ScrollView row="0" orientation="vertical">
         <GridLayout rows="*,30"   >
             <StackLayout row="0">
@@ -14,11 +14,13 @@
         <Label class="label" text="1Pitch ID" textWrap="true"></Label>
         <ng-template let-pitch="item" let-i="index" let-odd="odd" let-even="even">
             <ns-pitch
-                [selectedPitchId]="pitch">
+                [pitch]="pitch">
             </ns-pitch>
         </ng-template>
     </ListView>
-    <StackLayout [visibility]="pitches.length ? 'visible' : 'collapsed'" row="3">
-        <ns-table-footers></ns-table-footers>
+    <StackLayout [visibility]="pitches.length ? 'visible' : 'collapsed'" row="2">
+        <ns-table-footers
+            [hasNextPage]="hasNextPage"
+            [hasPreviousPage]="hasPreviousPage"></ns-table-footers>
     </StackLayout>
 </GridLayout>

@@ -1,4 +1,8 @@
 <GridLayout rows="*" columns="auto, *, auto">
-    <Label class="label" text="Back" col="0" textWrap="true"></Label>
-    <Label class="label" text="Next" col="2" textWrap="true"></Label>
+    <Label (tap)="goToNextPage(false)"
+        [visibility]="enabledPreviousPage ? 'visible' : 'collapsed'"
+        class="label" text="Back" col="0" textWrap="true"></Label>
+    <Label (tap)="goToNextPage(true)"
+        [visibility]="enabledNextPage ? 'visible' : 'collapsed'"
+        class="label" text="Next" col="2" textWrap="true"></Label>
 </GridLayout>

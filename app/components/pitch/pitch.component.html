@@ -1,10 +1,10 @@
-<GridLayout *ngIf="selectedPitch.attributes"
+<GridLayout *ngIf="pitch.attributes"
     rows="*" columns="auto, auto, auto, auto, auto, auto">
     <StackLayout class="input-field" row="0" col="0">
-        <Label class="label" [text]="selectedPitch.id" row="0" col="0" textWrap="true"></Label>
+        <Label class="label" [text]="pitch.id" row="0" col="0" textWrap="true"></Label>
     </StackLayout>
     <StackLayout class="input-field" row="0" col="1">
-        <Label class="label" [text]="selectedPitch.attributes.starts | date:'hh:mm d/m/y'" row="0" col="0" textWrap="true"></Label>
+        <Label class="label" [text]="pitch.attributes.starts | date:'hh:mm d/m/y'" row="0" col="0" textWrap="true"></Label>
     </StackLayout>
     <StackLayout class="input-field" row="0" col="2">
         <Label class="label" [text]="getDuration()" row="0" col="0" textWrap="true"></Label>
@@ -16,6 +16,6 @@
         <Label class="label" [text]="getEURPrice()" row="0" col="0" textWrap="true"></Label>
     </StackLayout>
     <StackLayout class="input-field" row="0" col="5">
-        <Label class="label" [text]="selectedPitch.attributes.availabilities" row="0" col="0" textWrap="true"></Label>
+        <Label class="label" [text]="pitch.attributes.availabilities" row="0" col="0" textWrap="true"></Label>
     </StackLayout>
 </GridLayout>

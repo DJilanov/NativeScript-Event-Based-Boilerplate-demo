@@ -19,6 +19,7 @@ import { TableHeadersComponent } from "./table-headers/table-headers.component";
     exports: [
         PitchComponent,
         SearchFormComponent,
+        TableFootersComponent,
         TableHeadersComponent
     ],
     declarations: [

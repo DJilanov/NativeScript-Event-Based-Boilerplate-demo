@@ -1,8 +1,7 @@
 import { Component } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 
-import { Pitch } from "../../services/pitch/pitch";
-import { PitchService } from "../../services/pitch/pitch.service";
+import { EventBusService } from "../../core/event-bus/event-bus.service";
 
 @Component({
     selector: "ns-table-footers",
@@ -12,10 +11,25 @@ import { PitchService } from "../../services/pitch/pitch.service";
 })
 export class TableFootersComponent {
 
+    enabledNextPage = false;
+    enabledPreviousPage = false;
+
     constructor(
-        private pitchService: PitchService,
+        private eventBusService: EventBusService,
         private routerExtensions: RouterExtensions
     ) {
+        this.eventBusService.paginationControllsAvailability.subscribe((data) => this.updatePaginationControlls(data))
+    }
 
+    updatePaginationControlls(data) {
+        this.enabledNextPage = data.enabledNextPage;
+        this.enabledPreviousPage = data.enabledPreviousPage;
+    }
+
+    goToNextPage(next) {
+        console.log('go to next page:', next);
+        this.eventBusService.emitChangePitchesPagination({
+            next: next
+        });
     }
 }
