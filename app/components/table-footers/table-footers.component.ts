@@ -27,7 +27,6 @@ export class TableFootersComponent {
     }
 
     goToNextPage(next) {
-        console.log('go to next page:', next);
         this.eventBusService.emitChangePitchesPagination({
             next: next
         });

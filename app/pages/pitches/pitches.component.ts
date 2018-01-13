@@ -19,7 +19,7 @@ const pitchesPerPage = 10;
 export class PitchesComponent {
     pitches: ObservableArray<Pitch> = new ObservableArray<Pitch>();
     fetchedPitches: Pitch[];
-    currentPage: 0;
+    currentPage: number = 0;
 
     constructor( 
         private page: Page,
@@ -33,14 +33,13 @@ export class PitchesComponent {
     
     fetchPitches(pitches: Pitch[]): void {
         this.fetchedPitches = pitches;
-        // this.pitches.push(pitches);
         this.updatePitches();
     }
 
     updatePitches() {
         this.pitches.length = 0
-        let lastElementIndex = Math.min(this.fetchedPitches.length, ((this.currentPage + 1) || 1) * pitchesPerPage);
-        for(let pitchCounter = 0 + (this.currentPage || 0) * pitchesPerPage; pitchCounter < lastElementIndex; pitchCounter++) {
+        let lastElementIndex = Math.min(this.fetchedPitches.length, (this.currentPage + 1) * pitchesPerPage);
+        for(let pitchCounter = 0 + this.currentPage * pitchesPerPage; pitchCounter < lastElementIndex; pitchCounter++) {
             this.pitches.push(this.fetchedPitches[pitchCounter]);
         }
         this.eventBusService.emitPaginationControllsAvailability({
@@ -58,7 +57,7 @@ export class PitchesComponent {
     }
 
     hasNextPage() {
-        return (this.currentPage * 10) < this.fetchedPitches.length;
+        return ((this.currentPage + 1) * 10) < this.fetchedPitches.length;
     }
     
     hasPreviousPage() {
