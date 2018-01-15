@@ -19,7 +19,7 @@ export class PitchDetailComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        const id = +this.route.snapshot.params["id"];
-        this.pitch = this.pitchService.getPitch(id.toString());
+        const id = this.route.snapshot.params["id"];
+        this.pitch = this.pitchService.getPitch(id);
     }
 }

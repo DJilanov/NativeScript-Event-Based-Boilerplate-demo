@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class UtilsService {
 
-    getTimeDifference(ends, starts) {
+    getTimeDifference(ends, starts): string {
         let difference = (ends.getTime() - starts.getTime()) / 1000;
         let days = ~~(difference / 86400)
         let hrs = ~~(difference / 3600);
